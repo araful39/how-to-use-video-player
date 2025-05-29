@@ -8,8 +8,6 @@ class VideoPlaylistScreen extends StatefulWidget {
 }
 
 class _VideoPlaylistScreenState extends State<VideoPlaylistScreen> {
-
-
   final List<String> videoUrls = [
     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
@@ -18,13 +16,9 @@ class _VideoPlaylistScreenState extends State<VideoPlaylistScreen> {
     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
   ];
 
-
-
   int currentIndex = 0;
   late VideoPlayerController _videoPlayerController;
   ChewieController? _chewieController;
-
-
 
   @override
   void initState() {
@@ -32,33 +26,20 @@ class _VideoPlaylistScreenState extends State<VideoPlaylistScreen> {
     _initializePlayer();
   }
 
-
-
   Future<void> _initializePlayer() async {
-
     _videoPlayerController = VideoPlayerController.networkUrl(
       Uri.parse(videoUrls[currentIndex]),
     );
 
-
-
     await _videoPlayerController.initialize();
-
 
     _videoPlayerController.addListener(() {
       if (_videoPlayerController.value.position >=
               _videoPlayerController.value.duration &&
           !_videoPlayerController.value.isPlaying) {
-
-
         _playNextVideo();
-     
-     
-     
       }
     });
-
-
 
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController,
@@ -66,12 +47,8 @@ class _VideoPlaylistScreenState extends State<VideoPlaylistScreen> {
       looping: false,
     );
 
-
     setState(() {});
- 
- 
   }
-
 
   void _playNextVideo() async {
     if (currentIndex < videoUrls.length - 1) {
@@ -83,11 +60,9 @@ class _VideoPlaylistScreenState extends State<VideoPlaylistScreen> {
     }
   }
 
-
   String formatDuration(Duration duration) {
     return duration.toString().split('.').first.padLeft(8, "0");
   }
-
 
   @override
   void dispose() {
@@ -95,7 +70,6 @@ class _VideoPlaylistScreenState extends State<VideoPlaylistScreen> {
     _videoPlayerController.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -145,10 +119,6 @@ class _VideoPlaylistScreenState extends State<VideoPlaylistScreen> {
                 ],
               )
               : Center(child: CircularProgressIndicator()),
-   
-   
-   
-   
     );
   }
 }

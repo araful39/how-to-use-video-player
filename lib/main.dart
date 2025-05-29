@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_video_app/video_play_list.dart';
+import 'package:flutter_video_app/video_player_customize.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: VideoPlaylistScreen(),
+      home: VideoPlayerCustomize(),
       debugShowCheckedModeBanner: false,
     );
   }
